@@ -679,7 +679,7 @@ public class JobDAO {
             log.debug("put: " + job.getID());
 
             // call IdentityManager outside the resource lock to avoid deadlock
-            if (owner != null) {
+            if (owner != null && !update) {
                 job.appData = identManager.toOwner(owner);
                 prof.checkpoint("IdentityManager.toOwner");
             }
